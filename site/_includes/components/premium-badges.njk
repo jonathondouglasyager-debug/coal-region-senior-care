@@ -1,0 +1,18 @@
+<section class="premium-section premium-badges-section">
+  <h2>Why Choose Us</h2>
+  <div class="premium-badges">
+    {% for badge in item.premiumBadges %}
+      {% if badgeDefinitions[badge] %}
+        <span class="trust-badge">
+          <span class="trust-badge-icon">{{ badgeDefinitions[badge].icon }}</span>
+          {{ badgeDefinitions[badge].label }}
+        </span>
+      {% else %}
+        <span class="trust-badge">
+          <span class="trust-badge-icon">&#10003;</span>
+          {{ badge }}
+        </span>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>

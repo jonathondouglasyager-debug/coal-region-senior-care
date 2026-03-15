@@ -1,0 +1,28 @@
+{# Featured Businesses — renders premium listings with photo, name, tagline, badge #}
+{# Only renders the section when premium businesses exist #}
+{% set premiumBusinesses = businesses.all | selectattr("premium") %}
+{% if premiumBusinesses | length %}
+<div class="featured-section">
+  <h2>Featured Businesses</h2>
+  <div class="featured-grid">
+    {% for biz in premiumBusinesses %}
+      <a href="{{ biz.url }}" class="featured-card">
+        {% if biz.premiumPhotos | length %}
+          <div class="featured-card-image">
+            <img src="/images/premium/{{ biz.slug }}/{{ biz.premiumPhotos[0] }}"
+                 alt="{{ biz.name }}"
+                 loading="lazy" />
+          </div>
+        {% endif %}
+        <div class="featured-card-info">
+          <span class="listing-featured-badge">Featured</span>
+          <h3>{{ biz.name }}</h3>
+          {% if biz.premiumTagline %}
+            <p>{{ biz.premiumTagline }}</p>
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

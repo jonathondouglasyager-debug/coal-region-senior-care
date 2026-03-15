@@ -1,0 +1,72 @@
+---
+layout: layouts/base.njk
+pageTitle: "Advertise Your Senior Care Business — Coal Region Senior Care"
+description: "Get a featured listing on the Coal Region Senior Care Directory. Stand out to families searching for senior care services in Schuylkill County, PA."
+---
+
+<div class="container">
+  <div class="advertise-page">
+
+    <h1>Get Found by Families Who Need You</h1>
+    <p class="page-intro">
+      The Coal Region Senior Care Directory is where Schuylkill County families turn when they need care for a loved one.
+      A Featured Listing puts your business front and center — with photos, testimonials, trust badges, and priority placement on every page where you appear.
+    </p>
+
+    <div class="roi-callout">
+      <h3>The Math That Matters</h3>
+      <p>
+        Assisted living averages $4,000–$6,000 per month per resident. One family who finds your facility through this directory represents $48,000–$72,000 in annual revenue. Your $99/month listing pays for itself with a fraction of one placement.
+      </p>
+      <p style="margin-top: 0.75rem;">
+        Home health agencies: your referral pipeline matters more than any other marketing. One new patient from this directory can represent $20,000+ in annual revenue. That's a 200x return on a $99/month listing.
+      </p>
+    </div>
+
+    <div class="advertise-comparison">
+      <div class="advertise-tier">
+        <h2>Free Listing</h2>
+        <p class="advertise-price">$0</p>
+        <ul>
+          <li>Business name and address</li>
+          <li>Phone number</li>
+          <li>Link to your website</li>
+          <li>Google rating display</li>
+          <li>Google Maps directions</li>
+        </ul>
+      </div>
+      <div class="advertise-tier advertise-tier-premium">
+        <span class="featured-badge">Recommended</span>
+        <h2>Featured Listing</h2>
+        <p class="advertise-price">$99<span>/month</span></p>
+        <ul>
+          <li>Everything in Free, plus:</li>
+          <li>Photo gallery with lightbox</li>
+          <li>Your story — About Us narrative</li>
+          <li>Family testimonials</li>
+          <li>Trust & specialty badges</li>
+          <li>Staff/director profile</li>
+          <li>"Featured" badge everywhere</li>
+          <li>Priority placement in category & city</li>
+          <li>Featured on the homepage</li>
+          <li>Monthly analytics report</li>
+        </ul>
+        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+        <div class="checkout-wrapper plausible-event-name=Checkout+Click">
+          <stripe-buy-button
+            buy-button-id="{{ site.stripe.buyButtonId }}"
+            publishable-key="{{ site.stripe.publishableKey }}"
+          >
+          </stripe-buy-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="advertise-cta mt-4">
+      <h2>No Contracts. Cancel Anytime.</h2>
+      <p>We're confident you'll see the value. That's why there are no long-term commitments. Try it for a month and see the difference a Featured Listing makes.</p>
+      <a href="/contact/" class="btn btn-secondary">Questions? Contact Us</a>
+    </div>
+
+  </div>
+</div>

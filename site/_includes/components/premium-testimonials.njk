@@ -1,0 +1,9 @@
+<section class="premium-section premium-testimonials">
+  <h2>What Families Are Saying</h2>
+  {% for t in item.premiumTestimonials %}
+    <blockquote class="testimonial-card">
+      <p>{{ t.quote }}</p>
+      <cite>&mdash; {{ t.author }}, {{ t.date }}</cite>
+    </blockquote>
+  {% endfor %}
+</section>

@@ -1,0 +1,56 @@
+---
+layout: layouts/base.njk
+pageTitle: "Find Trusted Senior Care in the Coal Region"
+description: "Find trusted assisted living, home health, hospice, nursing homes, and senior support services in Schuylkill County, PA. A free community directory for Coal Region families."
+---
+
+<div class="container">
+  <h1>Find Trusted Senior Care in the Coal Region</h1>
+  <p class="page-intro">
+    Assisted living, home health, hospice, and support services for Schuylkill County families. Finding care for a loved one is one of the hardest decisions a family makes. We built this directory to make it easier.
+  </p>
+
+  {% include "components/featured-listings.njk" %}
+
+  <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+    {% for cat in businesses.categories %}
+      <a href="/{{ cat.slug }}/" class="category-card">
+        <span class="count">{{ cat.items.length }}</span>
+        <span class="label">{{ cat.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="section">
+    <h2>Browse by City</h2>
+    <div class="city-links">
+      {% for city in businesses.cities %}
+        {% if city.items.length >= 2 %}
+          <a href="#city-{{ city.slug }}">{{ city.name }} ({{ city.items.length }})</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Caring for a Loved One?</h2>
+    <p class="page-intro">
+      Whether you're exploring options for an aging parent, looking for home health support, or navigating a hospice decision, our guides can help you understand your choices.
+    </p>
+    <div class="city-links">
+      <a href="/guides/assisted-living-vs-nursing-home-whats-the-difference/">Assisted Living vs. Nursing Home</a>
+      <a href="/guides/how-to-choose-home-health-agency-pa/">Choosing a Home Health Agency</a>
+      <a href="/guides/when-is-it-time-for-hospice/">When Is It Time for Hospice?</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}",
+  "description": "{{ site.description }}"
+}
+</script>

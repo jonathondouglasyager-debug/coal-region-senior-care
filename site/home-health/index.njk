@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+pageTitle: "Home Health Agencies in Schuylkill County, PA"
+description: "Directory of home health agencies, visiting nurses, and home care aides in Schuylkill County, Pennsylvania. Phone numbers, ratings, and directions."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Home Health"}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Home Health Agencies in Schuylkill County</h1>
+  <p class="page-intro">
+    Home health agencies bring skilled nursing, therapy, and personal care directly to your loved one's home. Whether you need post-hospital recovery support or ongoing care, these agencies serve families throughout the Coal Region.
+  </p>
+
+  {% set items = businesses.byCategory["home-health"].items %}
+  {% for group in items | by_city %}
+    <div class="city-section">
+      <h2>{{ group.city }}</h2>
+      <div class="card-grid">
+        {% for item in group.items %}
+          {% include "components/listing-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Home Health Agencies in Schuylkill County, PA",
+  "numberOfItems": {{ items.length }},
+  "itemListElement": [
+    {% for item in items %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "url": "{{ site.url }}{{ item.url }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>

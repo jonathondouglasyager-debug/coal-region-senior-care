@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+pageTitle: "Assisted Living in Schuylkill County, PA"
+description: "Directory of assisted living facilities and personal care homes in Schuylkill County, Pennsylvania. Phone numbers, ratings, and directions."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Assisted Living"}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Assisted Living in Schuylkill County</h1>
+  <p class="page-intro">
+    Assisted living and personal care homes in the Coal Region provide supportive environments for older adults who need help with daily activities but want to maintain their independence. Browse by city to find a community near you.
+  </p>
+
+  {% set items = businesses.byCategory["assisted-living"].items %}
+  {% for group in items | by_city %}
+    <div class="city-section">
+      <h2>{{ group.city }}</h2>
+      <div class="card-grid">
+        {% for item in group.items %}
+          {% include "components/listing-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Assisted Living in Schuylkill County, PA",
+  "numberOfItems": {{ items.length }},
+  "itemListElement": [
+    {% for item in items %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "url": "{{ site.url }}{{ item.url }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>

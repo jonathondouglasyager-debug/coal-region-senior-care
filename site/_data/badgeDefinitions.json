@@ -1,0 +1,11 @@
+{
+  "medicare_certified": { "icon": "&#9989;", "label": "Medicare Certified" },
+  "medicaid_accepted": { "icon": "&#9989;", "label": "Medicaid Accepted" },
+  "family_owned": { "icon": "&#127968;", "label": "Family Owned" },
+  "locally_operated": { "icon": "&#128205;", "label": "Locally Operated" },
+  "24_7_care": { "icon": "&#128336;", "label": "24/7 Care" },
+  "licensed_pa": { "icon": "&#128220;", "label": "PA Licensed" },
+  "veteran_friendly": { "icon": "&#127894;", "label": "Veteran Friendly" },
+  "memory_care": { "icon": "&#128156;", "label": "Memory Care" },
+  "respite_care": { "icon": "&#128156;", "label": "Respite Care Available" }
+}

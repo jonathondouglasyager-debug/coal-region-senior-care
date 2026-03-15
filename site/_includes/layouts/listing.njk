@@ -1,0 +1,283 @@
+---
+layout: layouts/base.njk
+---
+
+{% set item = listing %}
+
+{% if item.premium %}
+{# ============================================================
+   PREMIUM LISTING
+   ============================================================ #}
+
+<div class="container">
+  {% set breadcrumbs = [
+    {label: item.categoryLabel, url: "/" + item.categorySlug + "/"},
+    {label: item.name}
+  ] %}
+  {% include "components/breadcrumbs.njk" %}
+</div>
+
+{# Hero: OUTSIDE container for full-width edge-to-edge #}
+{% if item.premiumPhotos.length %}
+  {% include "components/premium-hero.njk" %}
+{% endif %}
+
+<div class="container">
+  <div class="listing-detail listing-premium">
+
+    <div class="listing-badges">
+      <span class="listing-category-badge">{{ item.categoryLabel }}</span>
+      <span class="listing-featured-badge">Featured</span>
+    </div>
+
+    {# Fallback h1 if no hero photo #}
+    {% if not item.premiumPhotos.length %}
+      <h1>{{ item.name }}</h1>
+    {% endif %}
+
+    {% if item.google_rating %}
+      <div class="mt-1">
+        {% include "components/star-rating.njk" %}
+      </div>
+    {% endif %}
+
+    {# About Us #}
+    {% if item.premiumDescription %}
+      <section class="premium-section premium-about">
+        <h2>About Us</h2>
+        <div class="premium-about-text">
+          {{ item.premiumDescription | safe }}
+        </div>
+      </section>
+    {% endif %}
+
+    {# Photo Gallery #}
+    {% if item.premiumPhotos.length %}
+      {% include "components/premium-gallery.njk" %}
+    {% endif %}
+
+    {# Services #}
+    {% if item.premiumServices and item.premiumServices.length %}
+      <div class="listing-services premium-section">
+        <h2>Services</h2>
+        <ul>
+          {% for service in item.premiumServices %}
+            <li>{{ service }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% elif item.services.length %}
+      <div class="listing-services premium-section">
+        <h2>Services</h2>
+        <ul>
+          {% for service in item.services %}
+            <li>{{ service }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {# Testimonials #}
+    {% if item.premiumTestimonials.length %}
+      {% include "components/premium-testimonials.njk" %}
+    {% endif %}
+
+    {# Director Profile #}
+    {% if item.premiumDirector %}
+      {% include "components/premium-director.njk" %}
+    {% endif %}
+
+    {# Trust Badges #}
+    {% if item.premiumBadges.length %}
+      {% include "components/premium-badges.njk" %}
+    {% endif %}
+
+    {# Hours & Availability #}
+    {% if item.premiumHours %}
+      <section class="premium-section premium-hours-section">
+        <h2>Hours &amp; Availability</h2>
+        {% if item.premiumHours.is_24_7 %}
+          <p class="hours-highlight">Available 24/7</p>
+        {% endif %}
+        {% if item.premiumHours.display %}
+          <p class="hours-display">{{ item.premiumHours.display }}</p>
+        {% endif %}
+        {% if item.premiumHours.note %}
+          <p class="hours-note">{{ item.premiumHours.note }}</p>
+        {% endif %}
+      </section>
+    {% endif %}
+
+    {# Contact Info #}
+    <dl class="listing-info">
+      {% if item.address %}
+        <dt>Address</dt>
+        <dd>{{ item.address }}</dd>
+      {% endif %}
+
+      {% if item.phone %}
+        <dt>Phone</dt>
+        <dd><a href="{{ item.phone | phone_link }}">{{ item.phone }}</a></dd>
+      {% endif %}
+
+      {% if item.website %}
+        <dt>Website</dt>
+        <dd><a href="{{ item.website }}" target="_blank" rel="noopener">{{ item.website }}</a></dd>
+      {% endif %}
+    </dl>
+
+    {# Social Links #}
+    {% if item.premiumSocial %}
+      <div class="premium-section premium-social">
+        <h2>Connect With Us</h2>
+        <div class="premium-social-links">
+          {% if item.premiumSocial.facebook %}
+            <a href="{{ item.premiumSocial.facebook }}" target="_blank" rel="noopener" class="social-link social-link-facebook">Facebook</a>
+          {% endif %}
+          {% if item.premiumSocial.google %}
+            <a href="{{ item.premiumSocial.google }}" target="_blank" rel="noopener" class="social-link social-link-google">Google Business</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    {# CTA Buttons #}
+    <div class="listing-cta premium-cta">
+      {% if item.phone %}
+        <a href="{{ item.phone | phone_link }}" class="btn btn-premium-primary">Call Now: {{ item.phone }}</a>
+      {% endif %}
+      {% if item.google_maps_url %}
+        <a href="{{ item.google_maps_url }}" target="_blank" rel="noopener" class="btn btn-premium-secondary">Get Directions</a>
+      {% endif %}
+      {% if item.website %}
+        <a href="{{ item.website }}" target="_blank" rel="noopener" class="btn btn-premium-secondary">Visit Website</a>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{# Sticky Mobile CTA Bar #}
+{% if item.phone or item.google_maps_url %}
+  <div class="premium-sticky-cta">
+    {% if item.phone %}
+      <a href="{{ item.phone | phone_link }}" class="btn btn-cta-call">Call Now</a>
+    {% endif %}
+    {% if item.google_maps_url %}
+      <a href="{{ item.google_maps_url }}" target="_blank" rel="noopener" class="btn btn-cta-directions">Directions</a>
+    {% endif %}
+  </div>
+{% endif %}
+
+{# GLightbox CDN #}
+{% if item.premiumPhotos.length %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/css/glightbox.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
+  <script>
+    (function() {
+      var lightbox = GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+    })();
+  </script>
+{% endif %}
+
+{% else %}
+{# ============================================================
+   FREE LISTING
+   ============================================================ #}
+
+<div class="container">
+  {% set breadcrumbs = [
+    {label: item.categoryLabel, url: "/" + item.categorySlug + "/"},
+    {label: item.name}
+  ] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <div class="listing-detail{% if item.premium %} listing-premium{% endif %}">
+    <div class="listing-badges">
+      <span class="listing-category-badge">{{ item.categoryLabel }}</span>
+      {% if item.premium %}
+        <span class="listing-featured-badge">Featured</span>
+      {% endif %}
+    </div>
+    <h1>{{ item.name }}</h1>
+
+    {% if item.google_rating %}
+      <div class="mt-1">
+        {% include "components/star-rating.njk" %}
+      </div>
+    {% endif %}
+
+    <dl class="listing-info">
+      {% if item.address %}
+        <dt>Address</dt>
+        <dd>{{ item.address }}</dd>
+      {% endif %}
+
+      {% if item.phone %}
+        <dt>Phone</dt>
+        <dd><a href="{{ item.phone | phone_link }}">{{ item.phone }}</a></dd>
+      {% endif %}
+
+      {% if item.website %}
+        <dt>Website</dt>
+        <dd><a href="{{ item.website }}" target="_blank" rel="noopener">{{ item.website }}</a></dd>
+      {% endif %}
+    </dl>
+
+    {% if item.services.length %}
+      <div class="listing-services">
+        <h2>Services</h2>
+        <ul>
+          {% for service in item.services %}
+            <li>{{ service }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <div class="listing-cta">
+      {% if item.phone %}
+        <a href="{{ item.phone | phone_link }}" class="btn btn-primary">Call {{ item.phone }}</a>
+      {% endif %}
+      {% if item.google_maps_url %}
+        <a href="{{ item.google_maps_url }}" target="_blank" rel="noopener" class="btn btn-secondary">Get Directions</a>
+      {% endif %}
+      {% if item.website %}
+        <a href="{{ item.website }}" target="_blank" rel="noopener" class="btn btn-secondary">Visit Website</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+{# ============================================================
+   SCHEMA JSON-LD (both premium and free paths)
+   ============================================================ #}
+{% include "components/schema-local-business.njk" %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.url }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ item.categoryLabel }}",
+      "item": "{{ site.url }}/{{ item.categorySlug }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ item.name | json_escape }}"
+    }
+  ]
+}
+</script>

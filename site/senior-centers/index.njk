@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+pageTitle: "Senior Centers in Schuylkill County, PA"
+description: "Directory of senior centers and adult day programs in Schuylkill County, Pennsylvania. Phone numbers and contact information."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Senior Centers"}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Senior Centers in Schuylkill County</h1>
+  <p class="page-intro">
+    Senior centers and adult day programs provide social connection, meals, activities, and support for older adults in the Coal Region. Many are open weekdays and welcome anyone age 60 and older.
+  </p>
+
+  {% set items = businesses.byCategory["senior-centers"].items %}
+  {% for group in items | by_city %}
+    <div class="city-section">
+      <h2>{{ group.city }}</h2>
+      <div class="card-grid">
+        {% for item in group.items %}
+          {% include "components/listing-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Senior Centers in Schuylkill County, PA",
+  "numberOfItems": {{ items.length }},
+  "itemListElement": [
+    {% for item in items %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "url": "{{ site.url }}{{ item.url }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>

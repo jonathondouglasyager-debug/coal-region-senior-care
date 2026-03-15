@@ -1,0 +1,20 @@
+<section class="premium-section premium-director-section">
+  <h2>Meet Your Director</h2>
+  <div class="director-card">
+    {% if item.premiumDirector.photo %}
+      <div class="director-photo">
+        <img src="/images/premium/{{ item.slug }}/{{ item.premiumDirector.photo }}"
+             alt="{{ item.premiumDirector.name }}"
+             width="200" height="200"
+             loading="lazy">
+      </div>
+    {% endif %}
+    <div class="director-info">
+      <h3>{{ item.premiumDirector.name }}</h3>
+      <p class="director-title">{{ item.premiumDirector.title }}</p>
+      {% if item.premiumDirector.bio %}
+        <p class="director-bio">{{ item.premiumDirector.bio }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>

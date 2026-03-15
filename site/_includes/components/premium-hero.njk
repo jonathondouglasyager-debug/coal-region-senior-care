@@ -1,0 +1,8 @@
+<section class="premium-hero" style="background-image: url('/images/premium/{{ item.slug }}/{{ item.premiumPhotos[0] }}')">
+  <div class="premium-hero-overlay">
+    <h1>{{ item.name }}</h1>
+    {% if item.premiumTagline %}
+      <p class="premium-hero-tagline">{{ item.premiumTagline }}</p>
+    {% endif %}
+  </div>
+</section>

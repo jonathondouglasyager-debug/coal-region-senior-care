@@ -1,0 +1,14 @@
+{
+  "title": "Coal Region Senior Care Directory",
+  "shortTitle": "Coal Region Senior Care",
+  "description": "Find trusted assisted living, home health, hospice, nursing homes, and senior support services in Schuylkill County, Pennsylvania. A community resource for Coal Region families.",
+  "url": "https://coalregionseniorcare.com",
+  "county": "Schuylkill County",
+  "state": "Pennsylvania",
+  "region": "Coal Region",
+  "plausibleDomain": "coalregionseniorcare.com",
+  "stripe": {
+    "publishableKey": "pk_test_PLACEHOLDER",
+    "buyButtonId": "buy_btn_PLACEHOLDER"
+  }
+}

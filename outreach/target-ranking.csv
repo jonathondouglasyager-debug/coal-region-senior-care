@@ -1,0 +1,9 @@
+rank,name,category,city,website_quality,review_presence,online_gap_score,estimated_transaction_value,priority_notes
+1,Kings Home Healthcare Inc,home_health,Pottsville,none,none,10,high,"No website at all. Medicare-certified. One new patient worth $20K+/yr."
+2,Heritage Mills Personal Care and Memory Assistance Center,assisted_living,Tower City,none,minimal,9,very_high,"60-bed facility with no website. One resident = $48K-72K/yr."
+3,Andsher Personal Care Home,assisted_living,McAdoo,none,minimal,9,high,"27-bed personal care home with no website. Independent owner."
+4,Rosewood Rehabilitation and Nursing Center,nursing_home,Schuylkill Haven,basic,minimal,8,very_high,"Locally owned 142-bed SNF. Strong community roots but weak web presence."
+5,Schuylkill Home Care,home_health,Schuylkill Haven,basic,minimal,7,high,"Third-generation woman-owned. 35+ years in business. Website exists but basic."
+6,Blue Mountain Home Health Care Inc,home_health,Pottsville,basic,minimal,7,high,"Medicare certified JCAHO accredited. Website needs modernization."
+7,Anthracite Home Health,home_health,Minersville,none,none,9,medium,"No website. Licensed PA home health. Small agency with most to gain."
+8,Law Offices of Anthony Urban PC,support_services,Pottsville,basic,none,7,high,"Elder law attorney. One Medicaid planning client = $3K-5K. Basic website."

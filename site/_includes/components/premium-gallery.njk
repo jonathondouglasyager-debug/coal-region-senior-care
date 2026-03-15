@@ -1,0 +1,16 @@
+<section class="premium-section">
+  <h2>Our Facilities</h2>
+  <div class="premium-gallery-grid">
+    {% for photo in item.premiumPhotos %}
+      <a href="/images/premium/{{ item.slug }}/{{ photo }}"
+         class="glightbox"
+         data-gallery="listing-gallery"
+         data-title="{{ item.name }}">
+        <img src="/images/premium/{{ item.slug }}/{{ photo }}"
+             alt="{{ item.name }} - photo {{ loop.index }}"
+             loading="lazy"
+             width="400" height="300">
+      </a>
+    {% endfor %}
+  </div>
+</section>

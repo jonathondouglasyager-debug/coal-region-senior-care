@@ -1,0 +1,42 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ item.schemaType }}",
+  "name": "{{ item.name | json_escape }}",
+  {% if item.address %}"address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ item.address | json_escape }}",
+    "addressLocality": "{{ item.city | json_escape }}",
+    "addressRegion": "PA",
+    "postalCode": "{{ item.zip }}",
+    "addressCountry": "US"
+  },{% endif %}
+  {% if item.phone %}"telephone": "{{ item.phone }}",{% endif %}
+  {% if item.website %}"url": "{{ item.website }}",{% endif %}
+  {% if item.google_rating %}"aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ item.google_rating }}",
+    "reviewCount": "{{ item.google_review_count }}"
+  },{% endif %}
+  {% if item.lat %}"geo": {
+    "@type": "GeoCoordinates",
+    "latitude": {{ item.lat }},
+    "longitude": {{ item.lng }}
+  },{% endif %}
+  {% if item.premium and item.premiumDescription %}"description": "{{ item.premiumDescription | json_escape }}",{% endif %}
+  {% if item.premium and item.premiumPhotos.length %}"image": [
+    {% for photo in item.premiumPhotos %}
+    "{{ site.url }}/images/premium/{{ item.slug }}/{{ photo }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ],{% endif %}
+  {% if item.premium and item.premiumHours %}"openingHours": "{{ item.premiumHours.schema_string }}",{% endif %}
+  {% if item.premium and item.premiumSocial %}"sameAs": [
+    {% if item.premiumSocial.facebook %}"{{ item.premiumSocial.facebook }}"{% if item.premiumSocial.google %},{% endif %}{% endif %}
+    {% if item.premiumSocial.google %}"{{ item.premiumSocial.google }}"{% endif %}
+  ],{% endif %}
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Schuylkill County, Pennsylvania"
+  }
+}
+</script>

@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+pageTitle: "Hospice Care in Schuylkill County, PA"
+description: "Directory of hospice care providers and palliative care services serving Schuylkill County, Pennsylvania. Phone numbers and contact information."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Hospice"}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Hospice Care in Schuylkill County</h1>
+  <p class="page-intro">
+    Hospice providers offer compassionate end-of-life care focused on comfort, dignity, and quality of life. These organizations serve families throughout the Coal Region, providing support not just for patients but for the whole family.
+  </p>
+
+  {% set items = businesses.byCategory["hospice"].items %}
+  {% for group in items | by_city %}
+    <div class="city-section">
+      <h2>{{ group.city }}</h2>
+      <div class="card-grid">
+        {% for item in group.items %}
+          {% include "components/listing-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Hospice Care in Schuylkill County, PA",
+  "numberOfItems": {{ items.length }},
+  "itemListElement": [
+    {% for item in items %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "url": "{{ site.url }}{{ item.url }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>

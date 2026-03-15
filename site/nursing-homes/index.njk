@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+pageTitle: "Nursing Homes in Schuylkill County, PA"
+description: "Directory of nursing homes and skilled nursing facilities in Schuylkill County, Pennsylvania. Phone numbers, ratings, and directions."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Nursing Homes"}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Nursing Homes in Schuylkill County</h1>
+  <p class="page-intro">
+    Skilled nursing facilities provide 24-hour medical care for adults who need ongoing nursing support, rehabilitation, or long-term care. Browse by city to find a facility near your family.
+  </p>
+
+  {% set items = businesses.byCategory["nursing-homes"].items %}
+  {% for group in items | by_city %}
+    <div class="city-section">
+      <h2>{{ group.city }}</h2>
+      <div class="card-grid">
+        {% for item in group.items %}
+          {% include "components/listing-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Nursing Homes in Schuylkill County, PA",
+  "numberOfItems": {{ items.length }},
+  "itemListElement": [
+    {% for item in items %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "url": "{{ site.url }}{{ item.url }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
